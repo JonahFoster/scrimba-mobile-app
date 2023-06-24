@@ -5,13 +5,19 @@ const appSettings = {
     databaseURL: "https://playground-60636-default-rtdb.firebaseio.com/"
 }
 
+const images = ['images/cat0.png', 'images/cat1.png', 'images/cat2.png', 'images/cat3.jpg', 'images/cat4.png', 'images/cat5.png', 'images/cat6.png', 'images/cat7.png', 'images/cat8.png', 'images/cat9.png']
 const app = initializeApp(appSettings)
 const database = getDatabase(app)
 const shoppingListInDB = ref(database, "shoppingList")
-
 const inputFieldEl = document.getElementById("input-field")
 const addButtonEl = document.getElementById("add-button")
 const shoppingListEl = document.getElementById("shopping-list")
+const homeImageEl = document.getElementById("homepage-img")
+
+document.addEventListener('DOMContentLoaded', function() {
+    let i = Math.floor(Math.random() * images.length);
+    homeImageEl.src = images[i];
+});
 
 addButtonEl.addEventListener("click", function() {
     let inputValue = inputFieldEl.value
@@ -63,3 +69,4 @@ function appendItemToShoppingListEl(item) {
     
     shoppingListEl.append(newEl)
 }
+
